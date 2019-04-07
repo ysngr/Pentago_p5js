@@ -3,30 +3,19 @@
 //=========================================================================================================
 
 
-function mouseClicked() {
-  selectElement();
-  return ;
-}
-
-
+/* for smartphone */
 function touchEnded() {
   selectElement();
-  return ;
-}
-
-
-function selectElement() {
-  mdl.putMarble();
-  mdl.selectElementsAboutRotation();
-  return ;
-}
-
-
-function doubleClicked() {
   if ( mdl.isEnterButtonClicked() && mdl.rotation ) {
     rotateAndUpdate();
   }
-  return false;  // prevent default
+  return false;
+}
+
+
+function mouseClicked() {
+  selectElement();
+  return ;
 }
 
 
@@ -34,6 +23,13 @@ function keyPressed() {
   if ( keyCode == ENTER && mdl.rotation ) {
     rotateAndUpdate();
   }
+  return ;
+}
+
+
+function selectElement() {
+  mdl.putMarble();
+  mdl.selectElementsAboutRotation();
   return ;
 }
 
