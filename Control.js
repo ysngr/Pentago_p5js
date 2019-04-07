@@ -26,7 +26,7 @@ function doubleClicked() {
   if ( mdl.isEnterButtonClicked() && mdl.rotation ) {
     rotateAndUpdate();
   }
-  return ;
+  return false;  // prevent default
 }
 
 
