@@ -11,7 +11,7 @@ let Model = function() {
   this.marble = [];
   this.genMarbles();
   // console
-  this.text = "turn : " + (this.turn+1) + "\nBLACK";
+  this.text = "Turn : " + (this.turn+1) + "\n" + "Player : BLACK";
   // quadrant
   this.selectedQuadrant = NOT_SELECTED;
   this.putMarbleExistance = false;
@@ -78,7 +78,7 @@ Model.prototype.getMarbleCenter = function(quadrant, place) {
   }
 
   // increment value of coordinate by marble place
-  centerP[x] += (GUTTER + (place%3)*MARBLE_DIST);
+  centerP[x] += (GUTTER + GUTTER/2 + (place%3)*MARBLE_DIST);
   centerP[y] += (GUTTER + int(place/3)*MARBLE_DIST);
 
   return centerP;
@@ -203,13 +203,13 @@ Model.prototype.selectRotDirection = function() {
 
 
 Model.prototype.isEnterButtonClicked = function() {
-  
+
   if ( ENTER_BUTTON_Y <= mouseY && mouseY <= ENTER_BUTTON_Y + ENTER_BUTTON_HEIGHT ) {
     if ( ENTER_BUTTON_X <= mouseX && mouseX <= ENTER_BUTTON_X + ENTER_BUTTON_WIDTH ) {
       return true;
     }
   }
-  
+
   return false;
 };
 
@@ -264,7 +264,7 @@ Model.prototype.disableRotate = function() {
 
 Model.prototype.updateConsoleText = function() {
 
-  this.text = "turn : " + (this.turn+2) + "\n" + this.getColorText(this.turn+2);
+  this.text = "Turn : " + (this.turn+2) + "\n" + "Player : " + this.getColorText(this.turn+2);
   // < notice >
   // variable "turn" has the number of previous turn
   // turn number on console shows next turn
@@ -415,63 +415,10 @@ Model.prototype.isConnected = function(index) {
 
 Model.prototype.registerCompleteLine = function(index) {
 
-  this.cmpLine[0][x] = this.getEndPointX(index[0]);
-  this.cmpLine[0][y] = this.getEndPointY(index[0]);
-  this.cmpLine[1][x] = this.getEndPointX(index[4]);
-  this.cmpLine[1][y] = this.getEndPointY(index[4]);
+  this.cmpLine[0] = this.marble[index[0][0]][index[0][1]].coordinate;
+  this.cmpLine[1] = this.marble[index[4][0]][index[4][1]].coordinate;
 
   return ;
-};
-
-
-Model.prototype.getEndPointX = function(index) {
-
-  let xCoordinate = NOT_SELECTED;
-
-  /* add by quadrant */
-  if ( index[0] == FIRST_QUADRANT || index[0] == FOURTH_QUADRANT ) {
-    xCoordinate = BOARD_SIZE / 2 + GUTTER;
-  } else if ( index[0] == SECOND_QUADRANT || index[0] == THIRD_QUADRANT ) {
-    xCoordinate = GUTTER;
-  }
-
-  /* add by place(row) */
-  switch( index[1] % 3 ) {
-  case 2 :
-    xCoordinate += MARBLE_DIST;
-  case 1 :
-    xCoordinate += MARBLE_DIST;
-  case 0 :
-    break;
-  default :
-  }
-
-  return xCoordinate;
-};
-
-
-Model.prototype.getEndPointY = function(index) {
-
-  let yCoordinate = NOT_SELECTED;
-
-  /* add by quadrant */
-  if ( index[0] == FIRST_QUADRANT || index[0] == SECOND_QUADRANT ) {
-    yCoordinate = GUTTER;
-  } else if ( index[0] == THIRD_QUADRANT || index[0] == FOURTH_QUADRANT ) {
-    yCoordinate = BOARD_SIZE / 2 + GUTTER;
-  }
-  /* add by place(row) */
-  switch( int(index[1] / 3) ) {
-  case 2 :
-    yCoordinate += MARBLE_DIST;
-  case 1 :
-    yCoordinate += MARBLE_DIST;
-  case 0 :
-    break;
-  default :
-  }
-
-  return yCoordinate;
 };
 
 

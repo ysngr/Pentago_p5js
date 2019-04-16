@@ -12,10 +12,10 @@ View.prototype.board = function() {
   fill('#DC0000');  // board color = red
   noStroke();
   rectMode(CENTER);
-  rect(BOARD_SIZE/2+BOARD_SIZE/4, BOARD_SIZE/4, QUAD_SIZE, QUAD_SIZE);  // the first quadrant
-  rect(BOARD_SIZE/4, BOARD_SIZE/4, QUAD_SIZE, QUAD_SIZE);  // the second quadrant
-  rect(BOARD_SIZE/4, BOARD_SIZE/2+BOARD_SIZE/4, QUAD_SIZE, QUAD_SIZE);  // the third quadrant
-  rect(BOARD_SIZE/2+BOARD_SIZE/4, BOARD_SIZE/2+BOARD_SIZE/4, QUAD_SIZE, QUAD_SIZE);  // the fourth quadrant
+  rect(GUTTER/2+BOARD_SIZE/2+BOARD_SIZE/4, BOARD_SIZE/4, QUAD_SIZE, QUAD_SIZE);  // the first quadrant
+  rect(GUTTER/2+BOARD_SIZE/4, BOARD_SIZE/4, QUAD_SIZE, QUAD_SIZE);  // the second quadrant
+  rect(GUTTER/2+BOARD_SIZE/4, BOARD_SIZE/2+BOARD_SIZE/4, QUAD_SIZE, QUAD_SIZE);  // the third quadrant
+  rect(GUTTER/2+BOARD_SIZE/2+BOARD_SIZE/4, BOARD_SIZE/2+BOARD_SIZE/4, QUAD_SIZE, QUAD_SIZE);  // the fourth quadrant
 
   return ;
 };
@@ -81,9 +81,9 @@ View.prototype.setConsoleText = function() {
 
   noStroke();
   fill('#FFFFFF');  // text color = white
-  textSize(18);
+  textSize(20);
   textAlign(LEFT, BASELINE);
-  text(mdl.text, CONSOLE_X-65, CONSOLE_Y-7.5);
+  text(mdl.text, CONSOLE_X-75, CONSOLE_Y-6);
 
   return ;
 };
@@ -106,7 +106,7 @@ View.prototype.drawQuadrantLabel = function() {
   }
   noStroke();
   fill(0);  // text color = black
-  textSize(12);
+  textSize(15);
   textAlign(LEFT, BASELINE);
   text(quadrantStr, LABEL_X-50, QUAD_LABEL_Y+5);
 
@@ -161,9 +161,9 @@ View.prototype.drawRotationLabel = function() {
   }
   noStroke();
   fill(0);
-  textSize(12);
+  textSize(15);
   textAlign(LEFT, BASELINE);
-  text(rotationStr, LABEL_X-55, ROT_LABEL_Y+5);
+  text(rotationStr, LABEL_X-68, ROT_LABEL_Y+5);
 
   return ;
 };
